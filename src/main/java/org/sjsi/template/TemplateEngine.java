@@ -1,4 +1,4 @@
-package org.sjsi.template.engine;
+package org.sjsi.template;
 
 import java.util.Map;
 

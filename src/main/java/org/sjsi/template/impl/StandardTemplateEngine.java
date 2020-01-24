@@ -1,11 +1,10 @@
-package org.sjsi.template.engine.impl;
+package org.sjsi.template.impl;
 
-import freemarker.core.InvalidReferenceException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import org.sjsi.template.engine.TemplateEngine;
+import org.sjsi.template.TemplateEngine;
 import org.tinylog.Logger;
 
 import java.io.File;
@@ -39,6 +38,7 @@ public class StandardTemplateEngine implements TemplateEngine {
         }
     }
 
+    @Override
     public String getContent(String  template, Map<Object, Object> model) {
         try (StringWriter writer = new StringWriter()) {
             Template tpl = cfg.getTemplate(template);

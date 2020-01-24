@@ -1,11 +1,11 @@
-package org.sjsi.template.engine.impl;
+package org.sjsi.template.impl;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.sjsi.model.Constants;
-import org.sjsi.template.engine.TemplateEngine;
+import org.sjsi.template.TemplateEngine;
 
 import java.util.Date;
 import java.util.Map;
