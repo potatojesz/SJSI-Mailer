@@ -1,8 +1,8 @@
-Szanown<#if sex == 0>y Panie<#else>a Pani</#if>,
+Szanowny/a Panie/Pani,
 
 Z przykrością informujemy, że nie
-zdał<#if sex == 0> Pan<#else>a Pani</#if> egzaminu ${exam_type}
-przeprowadzonego w terminie: ${date?date}
+zdał/a Pan/Pani egzaminu ${exam_type}
+przeprowadzonego w terminie: ${date}
 
 
 Liczba zdobytych punktów: ${points} (${percent}%).

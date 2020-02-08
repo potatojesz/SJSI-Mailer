@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.sjsi.parser.ParserEngine;
+import org.sjsi.parser.ParserService;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -12,20 +13,20 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-public class StandardParserEngineTest {
-    private static ParserEngine engine;
+public class ParserServiceTest {
+    private static ParserService service;
 
     @BeforeClass
     public static void beforeClass() {
-        engine = new StandardParserEngine();
+        service = new StandardParserService();
     }
 
     @Test
-    public void testFile() throws URISyntaxException {
+    public void testXlsFile() throws URISyntaxException {
         URL res = getClass().getClassLoader().getResource("test_file.xls");
         File file = Paths.get(res.toURI()).toFile();
         Assert.assertNotNull(file);
-        List<Map<String, Object>> test = engine.parse(file);
+        List<Map<String, Object>> test = service.parse(file);
         Assert.assertNotNull(test);
     }
 }

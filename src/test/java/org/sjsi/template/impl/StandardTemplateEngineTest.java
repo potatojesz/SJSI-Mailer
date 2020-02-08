@@ -21,7 +21,7 @@ public class StandardTemplateEngineTest {
     @Test
     public void getContentTest() {
         String contentPass = engine.getContent(Constants.PASS_TEMPLATE, preparePassModel());
-        Assert.assertTrue(contentPass.contains("Szanowny Panie"));
+        Assert.assertTrue(contentPass.contains("Szanowny/a Panie/Pani"));
 
         contentPass = engine.getContent(Constants.PASS_TEMPLATE, prepareNotFullPassModel());
         Assert.assertNull(contentPass);
@@ -32,9 +32,8 @@ public class StandardTemplateEngineTest {
 
     private Map<Object, Object> preparePassModel() {
         return ImmutableMap.builder()
-                .put("sex", 0)
                 .put("exam_type", "ISQTB Poziom Podstawowy")
-                .put("date", new Date())
+                .put("date", "02-08-2020")
                 .put("points", 27)
                 .put("percent", 80.5)
                 .put("name", "Tomasz".toUpperCase())
@@ -51,7 +50,6 @@ public class StandardTemplateEngineTest {
         return ImmutableMap.builder()
                 .put("sex", 0)
                 .put("exam_type", "ISQTB Poziom Podstawowy")
-                .put("date", new Date())
                 .put("points", 27)
                 .put("name", "Tomasz".toUpperCase())
                 .put("lastname", "Klimczak".toUpperCase())
