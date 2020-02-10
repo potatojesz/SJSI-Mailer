@@ -10,10 +10,14 @@ import org.sjsi.parser.model.ExamOutcome;
 import org.sjsi.service.SJSIService;
 import org.sjsi.template.TemplateEngine;
 import org.sjsi.template.impl.StandardTemplateEngine;
+import org.tinylog.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,20 @@ public class StandardSJSIService implements SJSIService {
            mailer.send(mail);
         }
     }
-
+    @Override
+    public void verify(String filePath) throws URISyntaxException {
+        List<Mail> mails = getMails(filePath);
+        List<String> lines = new ArrayList<>(mails.size());
+        for(Mail mail : mails) {
+            lines.add("Mail do " + mail.getAddress() + " o tresci: " + System.lineSeparator() + mail.getContent());
+            lines.add(System.lineSeparator() + System.lineSeparator());
+        }
+        try {
+            Files.write(Paths.get(filePath.substring(0, filePath.lastIndexOf(File.separator)) + File.separator + "verify.txt"), lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            Logger.warn("Nie moge zapisać pliku weryfikacji!");
+        }
+    }
     private List<Mail> getMails(String filePath) throws URISyntaxException {
         List<Mail> mails = new ArrayList<>();
         URL res = getClass().getClassLoader().getResource(filePath);

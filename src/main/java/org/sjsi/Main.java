@@ -8,6 +8,11 @@ import java.net.URISyntaxException;
 public class Main {
     private static SJSIService service = new StandardSJSIService();
     public static void main(String[] args) throws URISyntaxException {
-	    service.process(args[0]);
+        final String filePath = args[0];
+        if (args.length > 1) {
+            service.verify(filePath);
+        } else {
+            service.process(filePath);
+        }
     }
 }
