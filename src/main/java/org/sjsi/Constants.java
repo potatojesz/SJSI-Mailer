@@ -1,4 +1,4 @@
-package org.sjsi.model;
+package org.sjsi;
 
 public interface Constants {
     public final static String PASS_TEMPLATE = "pass_mail_template.ftlh";

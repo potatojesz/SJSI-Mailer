@@ -1,11 +1,12 @@
 package org.sjsi.service.impl;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.sjsi.model.Constants;
-import org.sjsi.model.exam.ExamOutcome;
-import org.sjsi.parser.ParserEngine;
+import org.sjsi.Constants;
+import org.sjsi.mail.Mailer;
+import org.sjsi.mail.impl.StandardMailer;
+import org.sjsi.mail.model.Mail;
 import org.sjsi.parser.ParserService;
 import org.sjsi.parser.impl.StandardParserService;
+import org.sjsi.parser.model.ExamOutcome;
 import org.sjsi.service.SJSIService;
 import org.sjsi.template.TemplateEngine;
 import org.sjsi.template.impl.StandardTemplateEngine;
@@ -21,21 +22,19 @@ import java.util.Map;
 public class StandardSJSIService implements SJSIService {
     private ParserService parser = new StandardParserService();
     private TemplateEngine templateEngine = new StandardTemplateEngine();
+    private Mailer mailer = new StandardMailer();
 
     @Override
     public void process(String filePath) throws URISyntaxException {
-        List<Pair<String, String>> messages = getMessages(filePath);
-        for(Pair<String, String> pair : messages) {
-            final String email = pair.getKey();
-            final String message = pair.getValue();
-
-            System.out.println("Wyślę email do " + email + " o tresci" + message);
+        List<Mail> mails = getMails(filePath);
+        for(Mail mail : mails) {
+           mailer.send(mail);
         }
     }
 
-    private List<Pair<String, String>> getMessages(String filePath) throws URISyntaxException {
-        List<Pair<String, String>> messages = new ArrayList<>();
-        URL res = getClass().getClassLoader().getResource("test_file.xls");
+    private List<Mail> getMails(String filePath) throws URISyntaxException {
+        List<Mail> mails = new ArrayList<>();
+        URL res = getClass().getClassLoader().getResource(filePath);
         File file = null;
         if (res != null) {
             file = Paths.get(res.toURI()).toFile();
@@ -55,12 +54,12 @@ public class StandardSJSIService implements SJSIService {
                 } else {
                     throw new RuntimeException("Brak rezultatu dla egazminu");
                 }
-                messages.add(Pair.of(String.valueOf(map.get("email")), templateEngine.getContent(template, map)));
+                mails.add(new Mail((String) map.get("email"), templateEngine.getContent(template, map)));
             }
         } else {
             throw new RuntimeException("Brak pliku " + filePath);
         }
 
-        return messages;
+        return mails;
     }
 }

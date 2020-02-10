@@ -1,4 +1,4 @@
-package org.sjsi.model.parser;
+package org.sjsi.parser.model;
 
 public enum FileExtension {
     XLS, XLSX

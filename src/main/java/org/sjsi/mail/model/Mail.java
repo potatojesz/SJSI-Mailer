@@ -1,4 +1,4 @@
-package org.sjsi.model.mail;
+package org.sjsi.mail.model;
 
 public class Mail {
     private String address;
@@ -6,7 +6,7 @@ public class Mail {
 
     public Mail(String address, String content) {
         this.address = address;
-        this.content = content;
+        this.setContent(content);
     }
 
     public String getAddress() {
@@ -14,5 +14,12 @@ public class Mail {
     }
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
     }
 }

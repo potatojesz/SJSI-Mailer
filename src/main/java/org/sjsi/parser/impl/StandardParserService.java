@@ -1,7 +1,7 @@
 package org.sjsi.parser.impl;
 
 import org.apache.commons.io.FilenameUtils;
-import org.sjsi.model.parser.FileExtension;
+import org.sjsi.parser.model.FileExtension;
 import org.sjsi.parser.ParserEngine;
 import org.sjsi.parser.ParserService;
 

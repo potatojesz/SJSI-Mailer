@@ -4,10 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.sjsi.model.Constants;
+import org.sjsi.Constants;
 import org.sjsi.template.TemplateEngine;
 
-import java.util.Date;
 import java.util.Map;
 
 public class StandardTemplateEngineTest {

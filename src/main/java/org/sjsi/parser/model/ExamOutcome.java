@@ -1,4 +1,4 @@
-package org.sjsi.model.exam;
+package org.sjsi.parser.model;
 
 public enum ExamOutcome {
     SUCCESS, FAILED

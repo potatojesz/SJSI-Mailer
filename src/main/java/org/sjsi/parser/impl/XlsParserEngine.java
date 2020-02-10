@@ -6,7 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.sjsi.model.exam.ExamOutcome;
+import org.sjsi.parser.model.ExamOutcome;
 import org.sjsi.parser.ParserEngine;
 import org.tinylog.Logger;
 
