@@ -18,13 +18,10 @@ public class StandardGenderPickerService implements GenderPickerService {
 
     @Override
     public Gender predictGender(String name) {
-        if(new StringBuilder(name.toLowerCase()).reverse().substring(0, 1).equals("a")) {
+        if(new StringBuilder(name.toLowerCase()).reverse().substring(0, 1).equals("a") || FEALE_NAMES_EXCEPTION.contains(name)) {
             if(!MALE_NAMES_EXCEPTION.contains(name)) {
                 return Gender.FEMALE;
             }
-        }
-        if(FEALE_NAMES_EXCEPTION.contains(name)) {
-            return Gender.FEMALE;
         }
         return Gender.MALE;
     }
